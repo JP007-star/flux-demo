@@ -1,0 +1,36 @@
+import {createStore} from 'redux'
+
+//  ACTION  --> any function that return value
+const increment=()=>{
+  return {
+    type:"INCREMENT"
+  }
+}
+const decrement=()=>{
+  return {
+    type:"DECREMENT"
+  }
+} 
+// REDUCER --> manage state of element
+const reducer=(state=0,action)=>{
+  switch (action.type) {
+    case 'INCREMENT':
+      return state+1;
+      break;
+    case 'DECREMENT':
+      return state-1;
+      break;
+  
+    default:
+      return state;
+  }
+}
+
+//STORE--> save the state 
+const store= createStore(reducer);
+store.subscribe(()=>console.log(store.getState()));
+
+// DISPATCH --> use to call the action
+store.dispatch(increment())
+store.dispatch(increment())
+store.dispatch(decrement())
